@@ -1,3 +1,73 @@
+
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+
+
+
+/* ===========================
+
+========= 3. Header ======== 
+
+=========================== */
+
+.header {
+	position: relative;
+	width: 100%;
+}
+.header .header_v1 figure {
+	text-align: left
+}
+.header .header_v1 figure figcaption {
+	text-transform: uppercase;
+	position: relative;
+	z-index: 60;
+	padding-top: 257px
+}
+.header .header_v1 figure figcaption h2 {
+	color: #FFF;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 700;
+	font-size: 37px;
+	line-height: 38px;
+	letter-spacing: 2px;
+}
+.header .header_v1 figure figcaption p {
+	font-size: 13px;
+	line-height: 24px;
+	color: #eaeaea;
+	letter-spacing: 1px;
+	padding-top: 31px;
+	font-weight: 400;
+	text-transform: capitalize;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+.header .header_v1 figure figcaption p a {
+	display: block;
+	width: 178px;
+	height: 49px;
+	line-height: 49px;
+	text-transform: uppercase;
+	font-size: 12px;
+	font-weight: 400;
+	letter-spacing: 5px;
+	background-color: #fff445;
+	color: #060606;
+	text-align: center;
+	margin-top:33px
+}
+.header .header_v1 figure.video-header figcaption a {
+	margin:33px auto
+}
+.header .header_v1 figure figcaption p a:hover {
+	background-color: #000;
+	color:#FFF
+}
+
+
+
+
+
+/*
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
@@ -105,3 +175,4 @@ a {
     color-scheme: dark;
   }
 }
+*/
