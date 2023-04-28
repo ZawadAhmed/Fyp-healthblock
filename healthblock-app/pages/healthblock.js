@@ -1,54 +1,43 @@
 //import { createMedia } from '@artsy/fresnel'
 //import PropTypes from 'prop-types'
 import Head from 'next/head'
+import Navbar from '../component/ResponsiveNavbar'
+import Footer from '../component/Footer'
 import React, { Component } from 'react'
 import Image from 'next/image'
+import {  Container } from "react-bootstrap";
 //import { Link } from '../routes';
 //import { Router } from '../routes';
 import Web3 from 'web3';
-import { Navbar, NavItem,  Nav, Button, Col, Container, Row } from "react-bootstrap";
+import ResponsiveNavbar from '../component/ResponsiveNavbar'
+
+
 
 
 
 function HealthBlock() {
   return (
-    
     <>
-    <div>
-      <Head>
-
-        <title> HealthBlock App </title>
-        <meta name='description' content='A blockchain health record app' />
 
 
-      </Head>
+<Head>
 
-    </div>
+<title> HealthBlock App </title>
+<meta name='description' content='A blockchain health record app' />
+
+
+</Head>
+
+<Container>
     
-    <Navbar bg="light" variant="light">
-        <Container>
-          <Navbar.Brand href="#home">
-            HealthBlock
-          </Navbar.Brand>
-        </Container>
+  <ResponsiveNavbar />
 
-        <Nav>
-          <NavItem eventKey={1} href="#">
-            About us
-          </NavItem>
-          <NavItem eventKey={2} href="#">
-            Newsroom
-          </NavItem>
+</Container>
+  
+  
 
-          <NavItem eventKey={3} href="#">
-
-            <Button>Create A smart Contract</Button>
-
-          </NavItem>
-
-        </Nav>
-      </Navbar><Container>
-
+    
+     <Container>
         <div className="header_v1">
           <div className="banner" id="banner">
             <div className="slides-container" style={{ height: '100%' }}>
@@ -93,7 +82,15 @@ function HealthBlock() {
           </div>
         </div>
 
-      </Container></>
+      </Container>
+
+      <Container>
+
+        <Footer />
+
+      </Container>
+      
+      </>
 
   );
 }
