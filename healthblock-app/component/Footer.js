@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { Component } from 'react'
-import { Navbar, NavItem,  Nav, Button, Col, Container, Row, Form, NavDropdown } from "react-bootstrap";
+import { Footer } from "semantic-ui-react";
 
 const Footer = () => {
   return (
