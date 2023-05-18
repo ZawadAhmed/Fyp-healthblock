@@ -1,15 +1,13 @@
 //import { createMedia } from '@artsy/fresnel'
-//import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import Head from 'next/head'
-import Navbar from '../component/ResponsiveNavbar'
-import Footer from '../component/Footer'
 import React, { Component } from 'react'
 import Image from 'next/image'
-import {  Container } from "react-bootstrap";
+import {  Container } from "semantic-ui-react";
 //import { Link } from '../routes';
 //import { Router } from '../routes';
 import Web3 from 'web3';
-import ResponsiveNavbar from '../component/ResponsiveNavbar'
+
 
 
 
@@ -29,69 +27,53 @@ const HealthBlock = () => {
 
 </Head>
 
-<Container>
     
-  <ResponsiveNavbar />
-
-</Container>
-  
-  
-
-    
-     <Container>
-        <div className="header_v1">
-          <div className="banner" id="banner">
-            <div className="slides-container" style={{ height: '100%' }}>
-              <div className="slide">
-                <figure>
-                  <Image src="/Banner0.jpg" alt="Banner" width={1920} height={800} />
-                  <figcaption className="container">
-                    <h2>Welcome to HealthBlock</h2>
-                    <p>
-                      Protect your personal health information and have full access over your own data with us!{' '}
-                      <a href="#">Know More</a>
-                    </p>
-                  </figcaption>
-                </figure>
-                <div className="bg_overlay"></div>
-              </div>
-
-              <div className="slide">
-                <figure>
-                  <Image src="/Banner1.jpg" alt="Banner" width={1920} height={800} />
-                  <figcaption className="container">
-                    <h2>Blockchain Technology</h2>
-                    <p>
-                      Blockchain technology can be used to create a secure and transparent way to store and share health
-                      information. <br />
-                      With blockchain,This makes it easier for doctors and hospitals to see your medical history and make
-                      sure you get the best care possible.all of your health records can be kept in one place and accessed
-                      by anyone you give permission to. <br />
-                      Blockchain technology also makes it harder for people to cheat or make fake health records, which
-                      helps keep your information safe. <br />
-                      <br />
-                      Overall, using blockchain for health records can make the whole process faster, safer, and more
-                      efficient.
-                      <br />
-                      <a href="#">Create Contract</a>
-                    </p>
-                  </figcaption>
-                </figure>
-                <div className="bg_overlay"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </Container>
-
-      <Container>
-
-        <Footer />
-
-      </Container>
       
-      </>
+<Layout>
+
+<Container>    
+ <h1>Welcome to my website!</h1>
+ <p>This is the homepage.</p>
+
+
+ <ContactForm/>
+
+ 
+ </Container>
+ 
+ <Container>
+ <figcaption className="container">
+     <h2>Welcome to HealthBlock</h2>
+                      <p>
+                        Protect your personal health information and have full access over your own data with us!{' '}
+                        <a href="#">Know More</a>
+                      </p>
+  </figcaption>
+
+  <figcaption className="container">
+                      <h2>Blockchain Technology</h2>
+                      <p>
+                        Blockchain technology can be used to create a secure and transparent way to store and share health
+                        information. <br />
+                        With blockchain,This makes it easier for doctors and hospitals to see your medical history and make
+                        sure you get the best care possible.all of your health records can be kept in one place and accessed
+                        by anyone you give permission to. <br />
+                        Blockchain technology also makes it harder for people to cheat or make fake health records, which
+                        helps keep your information safe. <br />
+                        <br />
+                        Overall, using blockchain for health records can make the whole process faster, safer, and more
+                        efficient.
+                        <br />
+                        <a href="#">Create Contract</a>
+                      </p>
+                    </figcaption>
+
+ </Container>
+ 
+ </Layout> 
+
+
+     </>
 
   );
 }
