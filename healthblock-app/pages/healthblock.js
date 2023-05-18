@@ -15,7 +15,8 @@ import ResponsiveNavbar from '../component/ResponsiveNavbar'
 
 
 
-function HealthBlock() {
+const HealthBlock = () => {
+  
   return (
     <>
 

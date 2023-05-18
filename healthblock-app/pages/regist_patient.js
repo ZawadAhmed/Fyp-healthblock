@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
+import { useState } from 'react';
 import Layout from '../component/Layout';
 import Head from 'next/head';
 import { Button, Divider, Form, Input, Message, Select } from 'react-bootstrap';
+
 
 //import record from '../ethereum/record';
 //import web3 from '../ethereum/web3';
 //import { Router } from '../routes';
 
-import { useState } from 'react';
+
 
 
 // Allergy, Emergency name, Emergency contact removed 
 
-export default function NewRecord() {
+const NewRecord = () => {
   const [ic, setIC] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -32,59 +34,70 @@ export default function NewRecord() {
     { key: 'f', text: 'Female', value: 'female' },
   ];
 
-  const onSubmit = async (event) => {
+  onSubmit = async event => {
     event.preventDefault();
-    setLoading(true);
-    setErrorMessage('');
 
-    // Add logic to create a new record here...
+    const { ic, name, phone, gender, dob, height, weight, bloodgroup, allergies, medication } = this.state;
 
-    setLoading(false);
-  };
+    this.setState({loading: true, errorMessage: ''});
+
+    try {
+        const accounts = await web3.eth.getAccounts();
+
+        await record.methods.setDetails(
+            ic, name, phone, gender, dob, height, weight,  bloodgroup, allergies, medication, 
+        ).send({ from: accounts[0] });
+
+        alert("Account created successfully!");
+        Router.pushRoute('/list');
+    }
+    catch (err) {
+        this.setState({ errorMessage: err.message });
+        alert("Account already exists");
+    }
+
+    this.setState({ loading: false, ic: '', name: '', phone: '', gender: '', dob: '', height: '', weight: '',  bloodgroup: '',  medication: '' });
+    }
 
   const handleGender = (_, { value }) => {
     setGender(value);
   };
 
-  const PatientRecord = () => {
-    return(
-    <>
-      <Head>
-        <title>Create New Record</title>
-      </Head>
-      <Container>
-        <h1>Create New Record</h1>
-      </Container>
 
-      <Container>
+    return (
+        <>
+            <Head>
+                <title>Create New Record</title>
+            </Head>
+          
+                <h1>Create New Record</h1>
+
+         
                 <h2 style={{ marginTop: '10px', marginBottom: '30px' }}>General Information</h2>
                 <Divider clearing />
-                <Form onSubmit={onSubmit} error={!!errorMessage}>
-                <Form.Group widths="equal">
-                    <Form.Field>
-                    <label>IC</label>
-                    <Input
-                        placeholder="Eg. 001234010234"
-                        value={ic}
-                        onChange={(event) => setIC(event.target.value)}
-                    />
-                    </Form.Field>
+                <Form onSubmit={''} >
+                    <Form.Group widths="equal">
+                        <Form.Field>
+                            <label>IC</label>
+                            <Input
+                                placeholder="Eg. 001234010234"
+                                value={ic}
+                                onChange={(event) => setIC(event.target.value)} />
+                        </Form.Field>
 
-                    <Form.Field>
-                    <label>Full Name</label>
-                    <Input
-                        placeholder="Eg. John Smith"
-                        value={name}
-                        onChange={(event) => setName(event.target.value)}
-                    />
-                    </Form.Field>
-                </Form.Group>
+                        <Form.Field>
+                            <label>Full Name</label>
+                            <Input
+                                placeholder="Eg. John Smith"
+                                value={name}
+                                onChange={(event) => setName(event.target.value)} />
+                        </Form.Field>
+                    </Form.Group>
                 </Form>
 
-        </Container>    
-    );
-    
-};
- 
-export default ResponsiveNavbar;
+            );
+        </>
+        );
 
+}
+export default NewRecord;
