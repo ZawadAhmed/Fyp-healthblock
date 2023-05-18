@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import Image from 'next/image';
 import Logo from '../public/Logo.svg'
 import Head from 'next/head.js';
-import { VariantsSelectorWrapper } from "./VariantsSelectorWrapper.js";
 import { Navbar, Dropdown, Button, Link, Text, useTheme, Card, Spacer, Radio, } from "@nextui-org/react";
-import EditPatient from '@/pages/edit-patient';
 //import record from '../ethereum/record';
 //import web3 from '../ethereum/web3';
+
+
 //Header that is used in all pages
 
 

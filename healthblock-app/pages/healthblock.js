@@ -1,5 +1,6 @@
 //import { createMedia } from '@artsy/fresnel'
 import PropTypes from 'prop-types'
+import Layout from '@/component/Layout'
 import Head from 'next/head'
 import React, { Component } from 'react'
 import Image from 'next/image'
@@ -35,8 +36,6 @@ const HealthBlock = () => {
  <h1>Welcome to my website!</h1>
  <p>This is the homepage.</p>
 
-
- <ContactForm/>
 
  
  </Container>
