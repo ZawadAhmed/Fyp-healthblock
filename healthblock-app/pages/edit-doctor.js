@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Divider, Form, Input, Button, Segment, Message, Select} from 'semantic-ui-react';
-import Layout from '../components/Layout';
+import Layout from '../component/Layout';
 //import record from '../ethereum/record';
 //import web3 from '../ethereum/web3';
 

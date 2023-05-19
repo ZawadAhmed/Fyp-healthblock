@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Input, Form } from 'semantic-ui-react';
 import { Link } from '../routes';
-import Layout from '../components/Layout';
+import Layout from '../component/Layout';
 //import record from '../ethereum/record';
 //import web3 from '../ethereum/web3';
 import { Router } from '../routes';

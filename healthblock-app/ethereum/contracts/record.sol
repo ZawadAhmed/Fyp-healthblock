@@ -25,7 +25,7 @@ contract Records {
         string name;
         string phone;
         string gender;
-        string qualification;
+        string dob;
         address addr;
         uint date;
     }
@@ -90,7 +90,7 @@ contract Records {
     }
     
     //Allows patient to edit their existing record
-    function editDetails( string memory _ic, string memory _name, string memory _phone, string memory _gender, string memory _dob, string memory _height, string memory _weight, string memory _bloodgroup, string memory _allergies, string memory _medication) public {
+    function editDetails( string memory _ic, string memory _name, string memory _phone, string memory _gender, string memory _dob, string memory _height, string memory _weight, string memory _bloodgroup, string memory _allergies, string memory _medication) public view {
      require(isPatient[msg.sender]);
         Patients memory p = patients[msg.sender];
         
@@ -108,7 +108,7 @@ contract Records {
     }
 
     //Retrieve patient details from doctor registration page and store the details into the blockchain
-    function setDoctor(string memory _ic, string memory _name, string memory _phone, string memory _gender, string memory _dob, string memory _qualification, string memory _major) public {
+    function setDoctor(string memory _ic, string memory _name, string memory _phone, string memory _gender, string memory _dob) public {
         require(!isDoctor[msg.sender]);
         Doctors memory d = doctors[msg.sender];
         
@@ -116,7 +116,7 @@ contract Records {
         d.name = _name;
         d.phone = _phone;
         d.gender = _gender;
-        d.qualification = _qualification;
+        d.dob = _dob;
         d.addr = msg.sender;
         d.date = block.timestamp;
         
@@ -126,7 +126,7 @@ contract Records {
     }
 
     //Allows doctors to edit their existing profile
-    function editDoctor(string memory _ic, string memory _name, string memory _phone, string memory _gender, string memory _dob, string memory _qualification, string memory _major) public {
+    function editDoctor(string memory _ic, string memory _name, string memory _phone, string memory _gender, string memory _dob) public view {
      require(isDoctor[msg.sender]);
         Doctors memory d = doctors[msg.sender];
         
@@ -134,7 +134,7 @@ contract Records {
         d.name = _name;
         d.phone = _phone;
         d.gender = _gender;
-        d.qualification = _qualification;
+        d.dob = _dob;
         d.addr = msg.sender;
     }
 
@@ -159,7 +159,7 @@ contract Records {
     }
     
     //Retrieve appointment details from appointment page and store the details into the blockchain
-    function updateAppointment(address _addr, string memory _date, string memory _time, string memory _diagnosis, string memory _prescription, string memory _description, string memory _status) public {
+    function updateAppointment(address _addr, string memory _date, string memory _time, string memory _diagnosis, string memory _prescription, string memory _description, string memory _status) public  view {
         require(isDoctor[msg.sender]);
         Appointments memory a = appointments[_addr];
         
@@ -220,12 +220,12 @@ contract Records {
     }
 
     //Search doctor details by entering a doctor address (Only doctor will be allowed to access)
-    function searchDoctor(address _address) public view returns(string memory, string memory, string memory, string memory,  string memory) {
+    function searchDoctor(address _address) public view returns(string memory, string memory, string memory, string memory) {
         require(isDoctor[_address]);
         
         Doctors memory d = doctors[_address];
         
-        return (d.ic, d.name, d.phone, d.gender, d.qualification);
+        return (d.ic, d.name, d.phone, d.gender);
     }
     
     //Search appointment details by entering a patient address

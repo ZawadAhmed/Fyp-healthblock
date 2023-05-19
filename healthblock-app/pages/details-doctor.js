@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Segment, Header, Image } from 'semantic-ui-react';
-import Layout from '../components/Layout';
+import Layout from '../component/Layout';
 //import record from '../ethereum/record';
 //import web3 from '../ethereum/web3';
 import { Router } from '../routes';

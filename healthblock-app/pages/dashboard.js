@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Card, Icon, Image, Segment, Message, Statistic } from 'semantic-ui-react';
 import { AreaChart, Area, LineChart, Line, PieChart, Pie, Sector, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Link } from '../routes';
-import Layout from '../components/Layout';
+import Layout from '../component/Layout';
 import record from '../ethereum/record';
 import web3 from '../ethereum/web3';
 import { Router } from '../routes';
