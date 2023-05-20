@@ -1,4 +1,31 @@
-const HDWalletProvider = require('');
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+const Web3 = require('web3');
+const compiledFactory = require('./build/.json');
+
+const provider = new HDWalletProvider(
+    process.env.PUBLIC_KEY,
+    process.env.PUBLIC_INFURA_API
+);
+
+const web3 = new Web3(provider);
+
+const deploy = async () => {
+    const accounts = await web3.eth.getAccounts();
+    console.log('attempting to deploy from account: ', accounts[0]);
+
+    const result = await new web3.eth.Contract(compiledFactory.abi)
+    .deploy({data: compiledFactory.evm.bytecode.object})
+    .send( {from:accounts[0], gas:'3000000'});
+
+    console.log('Contract deployed to: ', result.options.address);
+    provider.engine.stop();
+};
+
+deploy();
+
+
+
+/*const HDWalletProvider = require('');
 const Web3 = require('web3');
 const compiledRecord = require('./build/Record.json');
 
@@ -26,4 +53,4 @@ const deploy = async () => {
     //Always go to record.js after updating solidity code
 };
 
-deploy();
+deploy();*/

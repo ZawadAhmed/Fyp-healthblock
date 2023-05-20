@@ -1,13 +1,8 @@
-//import { createMedia } from '@artsy/fresnel'
-import PropTypes from 'prop-types'
 import Layout from '@/component/Layout'
 import Head from 'next/head'
 import React, { Component } from 'react'
-import Image from 'next/image'
+import Head from 'next/head';
 import {  Container } from "semantic-ui-react";
-//import { Link } from '../routes';
-//import { Router } from '../routes';
-import Web3 from 'web3';
 
 
 
