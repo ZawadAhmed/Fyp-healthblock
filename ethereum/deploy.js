@@ -1,29 +1,49 @@
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 const Web3 = require('web3');
-const compiledFactory = require('./build/.json');
+const compiledRecord = require('./build/record.json');
 
-const provider = new HDWalletProvider(
-    process.env.PUBLIC_KEY,
-    process.env.PUBLIC_INFURA_API
+
+var mnemonic = 'around birth talk degree machine chalk mixed oil gesture cake almost penalty';
+
+var privateKeys = [
+    "99eb0b987c4d66fd8c9501883b5d809f29144719f05c2038412f4fc87491da49",
+    "c9cff3fb42b043302e852d23cc588f91dd4713aadc74b963371d107ffab858c5",
+  ];
+
+
+//Link to sepolia network by using Infura and providing seed phrase of metamask wallet
+let provider = new HDWalletProvider(
+    'around birth talk degree machine chalk mixed oil gesture cake almost penalty',
+    'https://sepolia.infura.io/v3/2f2093ab90c74ae5a9c4707cc6ce1852'    
+    
+    //process.env.NEXT_PUBLIC_MNEMONIC,
+    //process.env.NEXT_PUBLIC_INFURA_API_KEY
 );
 
 const web3 = new Web3(provider);
 
 const deploy = async () => {
     const accounts = await web3.eth.getAccounts();
-    console.log('attempting to deploy from account: ', accounts[0]);
 
-    const result = await new web3.eth.Contract(compiledFactory.abi)
-    .deploy({data: compiledFactory.evm.bytecode.object})
-    .send( {from:accounts[0], gas:'3000000'});
+    console.log('Attempting to deploy from account', accounts[0]);
 
-    console.log('Contract deployed to: ', result.options.address);
+    //Deploy contract to sepolia network
+    const result = await new web3.eth.Contract(JSON.parse(compiledRecord.abi))
+        .deploy({ data: compiledRecord.evm.bytecode.object })
+        .send({ gas: '10000000', from: accounts[0] });
+
+    //Display the address of the contract 
+    console.log('Contract deployed to', result.options.address);
+
+  
+
+    //Always go to record.js after updating solidity code
+
+    // At termination, `provider.engine.stop()' should be called to finish the process elegantly.
     provider.engine.stop();
 };
 
-deploy();
-
-
+    //OLD CODE 
 
 /*const HDWalletProvider = require('');
 const Web3 = require('web3');
@@ -52,5 +72,6 @@ const deploy = async () => {
 
     //Always go to record.js after updating solidity code
 };
+
 
 deploy();*/
