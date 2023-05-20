@@ -5,10 +5,8 @@ const fs = require('fs-extra');
 const buildPath = path.resolve(__dirname, 'build');
 fs.removeSync(buildPath);
 
-function compileContract() {
-    let recordPath = path.resolve(__dirname, 'contracts', 'record.sol');
-    let source = fs.readFileSync('./contracts/record.sol' , 'utf8')
-    let complierInput = {
+ const source = fs.readFileSync('./contracts/record.sol' , 'utf8')
+ const complierInput = {
         language: 'Solidity',
         sources:
         {
@@ -31,14 +29,20 @@ function compileContract() {
             }
         }
     };
+
     console.log('compiling contract');
-    let compiledContract = JSON.parse(solc.compile(JSON.stringify(complierInput)));
+    let output = JSON.parse(solc.compile(JSON.stringify(complierInput))).contracts['record.sol'];
+    
     console.log('Contract Compiled');
-    for (let record in compiledContract.contracts['record.sol']) {
-        console.log(record , compiledContract.contracts['record.sol'][record].abi);      
-        let abi = compiledContract.contracts['record.sol'][record].abi;
-        fs.writeFileSync(`./contracts/bin/${record}_abi.json` , JSON.stringify(abi));
-        return compiledContract.contracts['record.sol'][record];
+
+    //recreate build folder
+    fs.ensureDirSync(buildPath); 
+
+    for (let contract in output) {
+        fs.outputJsonSync(
+            path.resolve(buildPath, contract.replace(':', '') + '.json'),
+            output[contract]
+        );
     }
-}
+
 
