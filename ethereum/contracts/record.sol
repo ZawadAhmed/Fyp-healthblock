@@ -4,7 +4,7 @@ pragma solidity >=0.7.0 <0.9.0;
 
 
 contract record {
-    
+    //Attributes of Patient details
     struct Patients{
         string ic;
         string name;
@@ -19,7 +19,7 @@ contract record {
         address addr;
         uint date;
     }
-
+    //Attributes of Doctor details
     struct Doctors{
         string ic;
         string name;
@@ -30,6 +30,7 @@ contract record {
         uint date;
     }
 
+    //Attribute of 
     struct Appointments{
         address doctoraddr;
         address patientaddr;
