@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Divider, Form, Input, Button, Segment, Message, Select} from 'semantic-ui-react';
+import Web3 from 'web3';
 import Layout from '../component/Layout';
-//import record from '../ethereum/record';
-//import web3 from '../ethereum/web3';
 //import { Router } from '../routes';
 
 const options = [
@@ -12,7 +11,6 @@ const options = [
 ]
 
 const allergyOptions = [
-    { key: 'f', text: 'Food', value: 'Food' },
     { key: 'm', text: 'Medical', value: 'Medical' },
     { key: 'e', text: 'Environmental', value: 'Environmental' },
     { key: 'o', text: 'Others', value: 'Others' },
@@ -44,11 +42,23 @@ class RegisterPatient extends Component {
         const { ic, name, phone, gender, dob, height, weight, bloodgroup, allergies, medication, } = this.state;
 
         this.setState({loading: true, errorMessage: ''});
+       
+    
+        // issue is here 
 
-        try {
-            const accounts = await web3.eth.getAccounts();
+        if(window.ethereum) {
+            try {
+            const accounts = await window.ethereum.request(({ method: "eth_requestAccounts", }));  
+            const web3 = new Web3(window.ethereum);
+            const contractAddress = '0xdB6C8cc860769cF22499A9be9Ada69440bA464df';
+            const contractABI = [{"inputs":[],"name":"Record","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_address","type":"address"}],"name":"RevokePermission","outputs":[{"internalType":"bool","name":"success","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"appointmentCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"appointmentList","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"doctorCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"doctorList","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"_ic","type":"string"},{"internalType":"string","name":"_name","type":"string"},{"internalType":"string","name":"_phone","type":"string"},{"internalType":"string","name":"_gender","type":"string"},{"internalType":"string","name":"_dob","type":"string"},{"internalType":"string","name":"_height","type":"string"},{"internalType":"string","name":"_weight","type":"string"},{"internalType":"string","name":"_bloodgroup","type":"string"},{"internalType":"string","name":"_allergies","type":"string"},{"internalType":"string","name":"_medication","type":"string"}],"name":"editDetails","outputs":[],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"_ic","type":"string"},{"internalType":"string","name":"_name","type":"string"},{"internalType":"string","name":"_phone","type":"string"},{"internalType":"string","name":"_gender","type":"string"},{"internalType":"string","name":"_dob","type":"string"}],"name":"editDoctor","outputs":[],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getAppointmentCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_address","type":"address"}],"name":"getAppointmentPerPatient","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getAppointments","outputs":[{"internalType":"address[]","name":"","type":"address[]"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getDoctorCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getDoctors","outputs":[{"internalType":"address[]","name":"","type":"address[]"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getPatientCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getPatients","outputs":[{"internalType":"address[]","name":"","type":"address[]"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getPermissionGrantedCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_address","type":"address"}],"name":"givePermission","outputs":[{"internalType":"bool","name":"success","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"patientCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"patientList","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"permissionGrantedCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_address","type":"address"}],"name":"searchAppointment","outputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_address","type":"address"}],"name":"searchAppointmentDate","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_address","type":"address"}],"name":"searchDoctor","outputs":[{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_address","type":"address"}],"name":"searchDoctorDate","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_address","type":"address"}],"name":"searchPatientDemographic","outputs":[{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_address","type":"address"}],"name":"searchPatientMedical","outputs":[{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_address","type":"address"}],"name":"searchRecordDate","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_addr","type":"address"},{"internalType":"string","name":"_date","type":"string"},{"internalType":"string","name":"_time","type":"string"},{"internalType":"string","name":"_diagnosis","type":"string"},{"internalType":"string","name":"_prescription","type":"string"},{"internalType":"string","name":"_description","type":"string"},{"internalType":"string","name":"_status","type":"string"}],"name":"setAppointment","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"_ic","type":"string"},{"internalType":"string","name":"_name","type":"string"},{"internalType":"string","name":"_phone","type":"string"},{"internalType":"string","name":"_gender","type":"string"},{"internalType":"string","name":"_dob","type":"string"},{"internalType":"string","name":"_height","type":"string"},{"internalType":"string","name":"_weight","type":"string"},{"internalType":"string","name":"_bloodgroup","type":"string"},{"internalType":"string","name":"_allergies","type":"string"},{"internalType":"string","name":"_medication","type":"string"}],"name":"setDetails","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"_ic","type":"string"},{"internalType":"string","name":"_name","type":"string"},{"internalType":"string","name":"_phone","type":"string"},{"internalType":"string","name":"_gender","type":"string"},{"internalType":"string","name":"_dob","type":"string"}],"name":"setDoctor","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_addr","type":"address"},{"internalType":"string","name":"_date","type":"string"},{"internalType":"string","name":"_time","type":"string"},{"internalType":"string","name":"_diagnosis","type":"string"},{"internalType":"string","name":"_prescription","type":"string"},{"internalType":"string","name":"_description","type":"string"},{"internalType":"string","name":"_status","type":"string"}],"name":"updateAppointment","outputs":[],"stateMutability":"view","type":"function"}];
 
-            await record.methods.setDetails(
+            const contract = new web3.eth.Contract(contractABI, contractAddress); 
+            
+            
+            // calling the contract abi && address  -- ERROR 
+           
+            await contract.methods.setDetails(
                 ic, name, phone, gender, dob, height, weight,  bloodgroup, allergies, medication
             ).send({ from: accounts[0] });
 
@@ -63,6 +73,7 @@ class RegisterPatient extends Component {
         }
 
         this.setState({ loading: false, ic: '', name: '', phone: '', gender: '', dob: '', height: '', weight: '',  bloodgroup: '', allergies: '', medication: ''});
+    }
     }
 
     render() {
@@ -192,6 +203,8 @@ class RegisterPatient extends Component {
             </Layout>
         );
     }
+        
 }
+
 
 export default RegisterPatient;

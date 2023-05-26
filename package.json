@@ -7,8 +7,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
-  },
+    "lint": "next lint",
+    "compile": "solcjs --abi --include-path node_modules/ --base-path . ethereum/contracts/record.sol --output-dir ethereum/build"
+   },
   "dependencies": {
     "@nextui-org/react": "^1.0.0-beta.12",
     "@truffle/hdwallet-provider": "^2.1.11",

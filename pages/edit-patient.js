@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Divider, Form, Input, Button, Segment, Message, Select} from 'semantic-ui-react';
 import Layout from '../component/Layout';
-//import record from '../ethereum/record';
-//import web3 from '../ethereum/web3';
-//import { Router } from '../routes';
+import record from '../ethereum/record';
+import web3 from '../ethereum/web3';
+import { Router } from '../routes';
 
 const options = [
     { key: 'm', text: 'Male', value: 'Male' },
@@ -46,8 +46,9 @@ class EditPatient extends Component {
         this.setState({loading: true, errorMessage: ''});
 
         try {
-            const accounts = await web3.eth.getAccounts();
-
+            const accounts = await window.ethereum.request({
+                method: "eth_accounts",
+              });
             await record.methods.editDetails(
                 ic, name, phone, gender, dob, height, weight, bloodgroup, allergies, medication 
             ).send({ from: accounts[0] });
@@ -57,7 +58,7 @@ class EditPatient extends Component {
         }
         catch (err) {
             this.setState({ errorMessage: err.message });
-            alert("Account already exists");
+            alert("Account Failed");
         }
 
         this.setState({ loading: false, ic: '', name: '', phone: '', gender: '', dob: '', height: '', weight: '', bloodgroup: '', allergies: '', medication: ''});
