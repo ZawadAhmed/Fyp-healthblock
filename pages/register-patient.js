@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Divider, Form, Input, Button, Segment, Message, Select} from 'semantic-ui-react';
 import Web3 from 'web3';
 import Layout from '../component/Layout';
-//import { Router } from '../routes';
+import { Router } from '../routes';
 
 const options = [
     { key: 'm', text: 'Male', value: 'Male' },
@@ -44,7 +44,8 @@ class RegisterPatient extends Component {
         this.setState({loading: true, errorMessage: ''});
        
     
-        // issue is here 
+        
+        //sweetAlert2 -- look into 
 
         if(window.ethereum) {
             try {
@@ -57,7 +58,7 @@ class RegisterPatient extends Component {
             
             
             // calling the contract abi && address  -- ERROR 
-           
+            console.log(contract);
             await contract.methods.setDetails(
                 ic, name, phone, gender, dob, height, weight,  bloodgroup, allergies, medication
             ).send({ from: accounts[0] });
@@ -65,7 +66,7 @@ class RegisterPatient extends Component {
             alert("Account created successfully!");
             
             // router heeelp
-            //Router.pushRoute('/list'); 
+            Router.pushRoute('/list'); 
         }
         catch (err) {
             this.setState({ errorMessage: err.message });
