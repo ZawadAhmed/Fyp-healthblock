@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 import { Card, Input, Form } from 'semantic-ui-react';
-import { Link } from '../routes';
 import Layout from '../component/Layout';
-//import record from '../ethereum/record';
-//import web3 from '../ethereum/web3';
-import { Router } from '../routes';
+import compiledRecord from '../ethereum/record'
+import { Link, Router } from '../routes';
 
 class RecordsList extends Component {
     state = { 
         search: '' 
     };
 
-    static async getInitialProps() {
-        const allRecords = await record.methods.getPatients().call();
-
+    
+    static async getInitialProps() {   
+        const allRecords = await compiledRecord.methods.getPatients().call();
         return { allRecords };
     }
 
@@ -23,7 +21,7 @@ class RecordsList extends Component {
                 header: address,
                 description: (
                     <Link route={`/record/${address}`}>
-                        <a>View Record</a>
+                        View Record
                     </Link>
                 ),
                 fluid: true
