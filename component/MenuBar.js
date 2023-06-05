@@ -11,8 +11,6 @@ import { Navbar, Dropdown, Button, Link, Text, useTheme, Card, Spacer, Radio, } 
 
 
 export default function App() {
-  const [variant, setVariant] = React.useState("default");
-  const [activeColor, setActiveColor] = React.useState("primary");
 
   const {isDark} = useTheme();
 
