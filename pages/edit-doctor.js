@@ -47,7 +47,7 @@ class EditDoctor extends Component {
 
             await record.methods.editDoctor(
                 ic, name, phone, gender, dob, qualification, major
-            ).send({ from: accounts[0] });
+            ).send({ gas:'3000000', from: accounts[0] });
 
             alert("Doctor account created successfully!");
         }

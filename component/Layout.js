@@ -1,5 +1,4 @@
 import React from 'react';
-import Head from 'next/head';
 import { Container, Header, Icon, Segment } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css'
 import MenuBar from './MenuBar';

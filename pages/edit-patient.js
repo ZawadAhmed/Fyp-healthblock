@@ -51,7 +51,7 @@ class EditPatient extends Component {
               });
             await record.methods.editDetails(
                 ic, name, phone, gender, dob, height, weight, bloodgroup, allergies, medication 
-            ).send({ from: accounts[0] });
+            ).send({ gas: '3000000', from: accounts[0] });
 
             alert("Account created successfully!");
             Router.pushRoute('/list');

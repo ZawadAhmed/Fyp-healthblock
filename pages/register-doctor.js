@@ -45,7 +45,7 @@ class RegisterDoctor extends Component {
             
             await contract.methods.setDoctor(
                 ic, name, phone, gender, dob
-            ).send({ from: accounts[0] });
+            ).send({ gas: '3000000', from: accounts[0] });
 
             alert("Doctor account created successfully!");
         }

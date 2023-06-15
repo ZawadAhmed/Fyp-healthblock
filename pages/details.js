@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import { Grid, Segment, Header, Image  } from 'semantic-ui-react';
 import Layout from '../component/Layout';
-//import record from '../ethereum/record';
+import compiledRecord from '../ethereum/record';
 import web3 from '../ethereum/web3';
 import { Router } from '../routes';
 
 class RecordDetails extends Component {
-
-   /* static async getInitialProps(props) {
+    
+    static async getInitialProps(props) {
         const addr = props.query.address;
         const accounts = await web3.eth.getAccounts();
         var records, records2, appointment, profilePic;
 
-       /* try {
-            records = await record.methods.searchPatientDemographic(addr).call({from: accounts[0]});
-            records2 = await record.methods.searchPatientMedical(addr).call({from: accounts[0]});
-            appointment = await record.methods.searchAppointment(addr).call({from: accounts[0]});  
+        try {
+            records = await compiledRecord.methods.searchPatientDemographic(addr).call({from: accounts[0]});
+            records2 = await compiledRecord.methods.searchPatientMedical(addr).call({from: accounts[0]});
+            appointment = await compiledRecord.methods.searchAppointment(addr).call({from: accounts[0]});  
 
             if(appointment[0].includes("0x00000000000")) appointment[0] = '';
 
@@ -30,12 +30,10 @@ class RecordDetails extends Component {
                 height: records[5],
                 weight: records[6],
                 
-                houseaddr: records2[0],
-                bloodgroup: records2[1],
-                allergies: records2[2],
-                medication: records2[3],
-                emergencyName: records2[4],
-                emergencyContact: records2[5],
+               
+                bloodgroup: records2[0],
+                allergies: records2[1],
+                medication: records2[2],
 
                 doctoraddr: appointment[0],
                 doctorname: appointment[1],
@@ -49,10 +47,9 @@ class RecordDetails extends Component {
             };
         }
         catch (err) {
-             alert("You don't have permission to view this account");
-            //Router.pushRoute('/list');
+            Router.pushRoute(`/list`);
         }  
-    } */
+    } 
 
     renderDisplay(){
         return (
@@ -82,7 +79,7 @@ class RecordDetails extends Component {
                 </Grid.Column>
                 <Grid.Column width={9}>
                   <Segment>
-                    <Header as="h3" color='grey' style={{marginBottom:'25px'}}>PERSONAL DETAILS</Header>
+                    <Header as="h3" color='grey' style={{marginBottom:'25px'}}>PERSONAL DETAILS  SALAM</Header>
                     <Grid columns={4} verticalAlign='top'>
                         <Grid.Row>
                             <Grid.Column>
@@ -103,14 +100,7 @@ class RecordDetails extends Component {
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
-                    <Grid columns={1}>
-                        <Grid.Row>
-                            <Grid.Column>
-                                <b style={{color:'grey'}}>Address</b>
-                                <div style={{fontWeight:'bold'}}>{this.props.houseaddr}</div>
-                            </Grid.Column>
-                        </Grid.Row>
-                    </Grid>
+                 
 
                     <Header as="h3" color='grey' style={{marginTop:'35px', marginBottom:'25px'}}>MEDICAL DETAILS</Header>
                     <Grid columns={2} verticalAlign='top'>

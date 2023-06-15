@@ -1,5 +1,6 @@
 import { Button, Container } from '@nextui-org/react';
 import Menubar from "../component/MenuBar"
+import Footer from '@/component/Layout/Footer';
 
 import { useEffect, useState } from "react";
 
@@ -13,7 +14,7 @@ const Test = () => {
   }, [walletAddress]);
 
   const connectWallet = async () => {
-    if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
+    if (typeof window.ethereum != "undefined") {
       try {
         /* MetaMask is installed */
         const accounts = await window.ethereum.request({
@@ -31,7 +32,7 @@ const Test = () => {
   };
 
   const getCurrentWalletConnected = async () => {
-    if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
+    if (typeof window.ethereum != "undefined") {
       try {
         const accounts = await window.ethereum.request({
           method: "eth_accounts",
@@ -90,6 +91,7 @@ const Test = () => {
                 </span>
               </Button>   
         
+        <Footer/>
         </Container>
         
   

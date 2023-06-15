@@ -61,7 +61,7 @@ class RegisterPatient extends Component {
             console.log(contract);
             await contract.methods.setDetails(
                 ic, name, phone, gender, dob, height, weight,  bloodgroup, allergies, medication
-            ).send({ from: accounts[0] });
+            ).send({ gas: '4400000', from: accounts[0] });
 
             alert("Account created successfully!");
             
