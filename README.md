@@ -21,16 +21,21 @@ First, install all the dependencies
 
 Go to the project root directory
 
-use 'npm i or npm install' in your command prompt or powershell to install all the packages. 
+use in your command prompt or powershell to install all the packages.  
+```bash
+npm i 
+#or 
+npm install 
+```
 
 Besure to have all the required dependencies installed, please check the image attached to the project that highlights all the packages used for this project. 
 
 ### Step 2
 Second cd to ethereum folder and run the following code in your console:
-
+```bash
  node compile.js
  node deploy.js 
-
+```
  these two commands will compile the smartcontract and deploy it to the testnetwork 
  Update the code by Pasting the contract deployed address that you receive after deployment. 
 
@@ -42,10 +47,7 @@ to run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
